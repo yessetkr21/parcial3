@@ -1,0 +1,13 @@
+numerosEntreDosYelSiguienteValor :: Int -> [Int]
+numerosEntreDosYelSiguienteValor x = filter esprimo [2..x]
+esprimo :: Int -> Bool
+esprimo n | n < 2     = False
+          | otherwise = all (\x -> n `mod` x /= 0) [2..isqrt n]
+          where isqrt = floor . sqrt . fromIntegral
+
+main :: IO ()
+main = do
+  putStrLn "Hola bienvenido! ingrese un número entero mayor que 2: "
+  input <- getLine
+  let x = read input :: Int
+  putStrLn $ "los numeros primos entre 2 y " ++ show x ++ " son : " ++ show (numerosEntreDosYelSiguienteValor x)
